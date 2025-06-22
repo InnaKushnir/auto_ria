@@ -7,3 +7,4 @@ Scripts/
 .env
 .idea/
 db.sqlite3
+data
