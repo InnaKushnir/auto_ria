@@ -1,3 +1,5 @@
+from datetime import timezone
+
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
@@ -19,9 +21,12 @@ class Auto(models.Model):
 
     image_url = models.URLField(max_length=255, unique=True)
     images_count = models.IntegerField()
-    car_number = models.CharField(unique=True, max_length=20)
+    car_number = models.CharField(max_length=20)
     car_vin = models.CharField(max_length=255)
-    datetime_found = models.DateTimeField()
+    datetime_found = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = (('car_number', 'car_vin'),)
 
 
     def __str__(self) -> str:
